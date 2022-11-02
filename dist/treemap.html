@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treemap Test</title>
+
+    <!-- <script src="https://unpkg.com/lodash@4.17.20"></script> -->
+</head>
+<body>
+    <script src="bundle.js"></script>
+    <div id="#treemap"></div>
+    <script>
+        const flare = d3.csv("../data/flare.csv")
+
+        let chart = document.querySelector('#treemap')
+
+        chart = Treemap(flare, {
+            path: d => d.name.replace(/\./g, "/"), // e.g., "flare/animate/Easing"
+            value: d => d?.size, // size of each node (file); null for internal nodes (folders)
+            group: d => d.name.split(".")[1], // e.g., "animate" in "flare.animate.Easing"; for color
+            label: (d, n) => [...d.name.split(".").pop().split(/(?=[A-Z][a-z])/g), n.value.toLocaleString("en")].join("\n"),
+            title: (d, n) => `${d.name}\n${n.value.toLocaleString("en")}`, // text to show on hover
+            link: (d, n) => `https://github.com/prefuse/Flare/blob/master/flare/src${n.id}.as`,
+            tile: d3.treemapBinary, // e.g., d3.treemapBinary; set by input above
+            width: 1152,
+            height: 1152
+        })
+    </script>
+</body>
+</html>
