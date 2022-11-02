@@ -5,12 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histogram Test</title>
-
-    <!-- <script src="https://unpkg.com/lodash@4.17.20"></script> -->
 </head>
 <body>
     <script src="bundle.js"></script>
-    <div id="#histogram"></div>
+    <h1 style="text-align: center;">D3 - Temperature Histogram</h1>
+    <div id="#histogram" style="display: flex; justify-content: center;"></div>
     <script>
         const renderHistogram = async () => {
             const temperature = await d3.csv("../data/temperature-data.csv")
