@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barchart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <script src="../dist/bundle.js"></script>
+    <h1 class="text-center text-blue-500 text-xl font-bold my-10">MOM - W44 - Fundraising by Members of the 117th Congress</h1>
+    <h2 class="text-center text-blue-500 text-lg mb-10">Barchart with D3</h2>
+    <div id="#barchart" class="flex justify-center overflow-x-scroll"></div>
+    <script>
+        const renderHistogram = async () => {
+            let fundrising = await d3.csv("../data/2022-election-cycle-fundraising.csv")
+
+            fundrising = fundrising.map(function(d){
+                return {
+                    chamber: d.Chamber,
+                    debts: Number(d.Debts.replace(/[^0-9.-]+/g, '')),
+                    member: d.Member,
+                    party: d.Party,
+                    raised: Number(d.Raised.replace(/[^0-9.-]+/g, '')),
+                    spent:  Number(d.Spent.replace(/[^0-9.-]+/g, '')),
+                    state: d.State
+                }
+            })
+
+            let svg = BarChart(fundrising, {
+                x: d => d.member,
+                y: d => d.raised,
+                xDomain: d3.groupSort(fundrising, ([d]) => -d.raised, d => d.member), // sort by descending frequency
+                yFormat: "$",
+                yLabel: "↑ Raised",
+                color: "steelblue"
+            })
+
+            document.getElementById('#barchart').innerHTML = svg.outerHTML
+        }
+
+        renderHistogram()
+    </script>
+</body>
+</html>
