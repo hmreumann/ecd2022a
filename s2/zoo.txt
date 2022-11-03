@@ -1,0 +1,17 @@
+The goal of visualization is to aid our understanding of data by leveraging the human visual system's highly tuned ability to see patterns, spot trends, and identify outliers
+
+graphical perception experiments find that spatial position (as in a scatter plot or bar chart) leads to the most accurate decoding of numerical data
+
+Other forms of time-series data may be better seen in aggregate. By stacking area charts on top of each other, we arrive at a visual summation of time-series values—a stacked graph.
+
+Parallel Coordinates
+Parallel coordinates (||-coord), shown in figure 2D, take a different approach to visualizing multivariate data. Instead of graphing every pair of variables in two dimensions, we repeatedly plot the data on parallel axes and then connect the corresponding points with lines.
+
+Flow maps
+By placing stroked lines on top of a geographic map, a flow map can depict the movement of a quantity in space and (implicitly) in time.
+
+Choropleth Maps
+One common error is to encode raw data values (such as population) rather than using normalized values to produce a density map.
+
+Force-directed Layouts
+A common and intuitive approach to network layout is to model the graph as a physical system: nodes are charged particles that repel each other, and links are dampened springs that pull related nodes together.
