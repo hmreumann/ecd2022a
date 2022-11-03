@@ -28,14 +28,23 @@
                 }
             })
 
-            let svg = BarChart(fundrising, {
-                x: d => d.member,
-                y: d => d.raised,
-                xDomain: d3.groupSort(fundrising, ([d]) => -d.raised, d => d.member), // sort by descending frequency
-                yFormat: "$",
-                yLabel: "↑ Raised",
+            svg = HorizontalBarChart(fundrising, {
+                x: d => d.raised,
+                y: d => d.member,
+                yDomain: d3.groupSort(fundrising, ([d]) => -d.raised, d => d.member), // sort by descending frequency
+                xFormat: "$",
+                xLabel: "Raised →",
+                width: 1000,
                 color: "steelblue"
             })
+            // let svg = BarChart(fundrising, {
+            //     x: d => d.member,
+            //     y: d => d.raised,
+            //     xDomain: d3.groupSort(fundrising, ([d]) => -d.raised, d => d.member), // sort by descending frequency
+            //     yFormat: "$",
+            //     yLabel: "↑ Raised",
+            //     color: "steelblue"
+            // })
 
             document.getElementById('#barchart').innerHTML = svg.outerHTML
         }
