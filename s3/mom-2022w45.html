@@ -5,9 +5,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+    <title>MakeoverMonday 2022 Week 45 | Who Americans Spend Their Time With</title>
 </head>
 
 <body>
+    <h1>MakeoverMonday 2022 Week 45 | Who Americans Spend Their Time With</h1>
     <div id="vis" />
     <script>
         const spec = {
@@ -18,42 +20,92 @@
             },
             "layer": [
                 {
-                    "mark": { "type": "line", "point": { "filled": false, "fill": "white" } },
+                    "mark": {
+                        "type": "line",
+                        "point": { "filled": false, "fill": "white", "color": "#e6ab02" },
+                        "color": "#e6ab02"
+                    },
                     "encoding": {
                         "x": { "field": "Year" },
                         "y": {
                             "field": "Time spent alone, by age of respondent (United States)",
-                            "type": "quantitative"
+                            "type": "quantitative",
+                            "title": "Alone"
                         }
                     }
                 },
                 {
-                    "mark": { "type": "line", "point": { "filled": false, "fill": "white" } },
+                    "mark": {
+                        "type": "line",
+                        "point": { "filled": false, "fill": "white", "color": "#1b9e77" },
+                        "color": "#1b9e77"
+                    },
                     "encoding": {
                         "x": { "field": "Year" },
                         "y": {
                             "field": "Time spent with friends, by age of respondent (United States)",
-                            "type": "quantitative"
+                            "type": "quantitative",
+                            "title": "Friends"
                         }
                     }
                 },
                 {
-                    "mark": { "type": "line", "point": { "filled": false, "fill": "white" } },
+                    "mark": {
+                        "type": "line",
+                        "point": { "filled": false, "fill": "white", "color": "#d95f02" },
+                        "color": "#d95f02"
+                    },
                     "encoding": {
                         "x": { "field": "Year" },
                         "y": {
                             "field": "Time spent with children, by age of respondent (United States)",
-                            "type": "quantitative"
+                            "type": "quantitative",
+                            "title": "Children"
                         }
                     }
                 },
                 {
-                    "mark": { "type": "line", "point": { "filled": false, "fill": "white" } },
+                    "mark": {
+                        "type": "line",
+                        "point": { "filled": false, "fill": "white", "color": "#7570b3" },
+                        "color": "#7570b3"
+                    },
                     "encoding": {
                         "x": { "field": "Year" },
                         "y": {
                             "field": "Time spent with with parents, siblings and other family, by age of respondent (United States)",
-                            "type": "quantitative"
+                            "type": "quantitative",
+                            "title": "Parents"
+                        }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "line",
+                        "point": { "filled": false, "fill": "white", "color": "#e7298a" },
+                        "color": "#e7298a"
+                    },
+                    "encoding": {
+                        "x": { "field": "Year" },
+                        "y": {
+                            "field": "Time spent with partner, by age of respondent (United States)",
+                            "type": "quantitative",
+                            "title": "Partner"
+                        }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "line",
+                        "point": { "filled": false, "fill": "white", "color": "#66a61e" },
+                        "color": "#66a61e"
+                    },
+                    "encoding": {
+                        "x": { "field": "Year" },
+                        "y": {
+                            "field": "Time spent with coworkers, by age of respondent (United States)",
+                            "type": "quantitative",
+                            "title": "Coworkers"
                         }
                     }
                 }
