@@ -17,9 +17,10 @@
 </head>
 <body class="max-w-7xl mx-auto bg-blue-500 grid">
     <header class="text-center bg-white py-10 text-blue-700">
-        <h1 class="text-5xl">ITBA - ECD 2022</h1>
-        <h3 class="text-7xl mt-6">DATAVIS</h3>
-        <h1 class="text-3xl mt-6">Horas de Vuelo - Aviación Civil</h1>
+        <h1 class="text-4xl">ITBA - ECD 2022</h1>
+        <h3 class="text-6xl mt-6">DATAVIS</h3>
+        <h2 class="text-4xl mt-6 font-bold">TP DATOS PERSONALES</h3>
+        <h1 class="text-3xl mt-6">Horas de Vuelo</h1>
     </header>
     <main class="w-full bg-white py-10">
         <div class="space-y-10">
@@ -42,7 +43,7 @@
                             "x": {
                                 "timeUnit": "yearmonth",
                                 "field": "fecha",
-                                "type": "ordinal"
+                                "type": "temporal"
                             },
                             "y": {
                                 "field": "total_piloto",
@@ -76,7 +77,7 @@
         "x": {
             "timeUnit": "yearmonth",
             "field": "fecha",
-            "type": "ordinal"
+            "type": "temporal"
         },
         "y": {
             "field": "total_piloto",
@@ -99,8 +100,9 @@
     <footer class="text-center bg-white py-10">
         <p>Hernán Martínez Reumann 	&#169; 2022</p>
         <ul>
-            <li><a href="https://tailwindcss.com/">Tailwind CSS</a></li>
-            <li><a href="https://vega.github.io/vega-lite/">Vega Lite</a></li>
+            <li><a href="https://tailwindcss.com/" class="text-blue-400 hover:underline" target="_blank">Tailwind CSS</a></li>
+            <li><a href="https://vega.github.io/vega-lite/" class="text-blue-400 hover:underline" target="_blank">Vega Lite</a></li>
+            <li><a href="https://highlightjs.org/" class="text-blue-400 hover:underline" target="_blank">Highlight Js</a></li>
         </ul>
     </footer>
 </body>
