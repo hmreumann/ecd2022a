@@ -37,7 +37,7 @@
                         "transform": [
                             {"calculate": "datum.sobre_aerodromo_piloto + datum.travesia_piloto", "as": "total_piloto"}
                         ],
-                        "mark": "bar",
+                        "mark": {"type": "bar", "tooltip": true},
                         "encoding": {
                             "x": {
                                 "timeUnit": "yearmonth",
@@ -65,11 +65,13 @@
                 <pre><code class="language-json">
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": 400,
     "data": {"url": "data/horas_de_vuelo.csv"},
     "transform": [
         {"calculate": "datum.sobre_aerodromo_piloto + datum.travesia_piloto", "as": "total_piloto"}
     ],
-    "mark": "bar",
+    "mark": {"type": "bar", "tooltip": true},
     "encoding": {
         "x": {
             "timeUnit": "yearmonth",
@@ -84,6 +86,9 @@
             "field": "matricula",
             "type": "nominal"
         }
+    },
+    "config": {
+        "style": "width: 100%;"
     }
 }
                 </code></pre>
