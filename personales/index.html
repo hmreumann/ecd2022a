@@ -20,17 +20,16 @@
         <h1 class="text-4xl">ITBA - ECD 2022</h1>
         <h3 class="text-6xl mt-6">DATAVIS</h3>
         <h2 class="text-4xl mt-6 font-bold">TP DATOS PERSONALES</h3>
-        <h1 class="text-3xl mt-6">Horas de Vuelo</h1>
     </header>
     <main class="w-full bg-white py-10 space-y-20">
         <div class="space-y-10">
-            <h1 class="text-left ml-20 text-blue-500 text-3xl">Horas de Vuelo</h1>
+            <h1 class="text-left ml-20 text-blue-500 text-3xl">Horas de Vuelo por Mes</h1>
             <div class="flex justify-center max-w-6xl mx-auto">
                 <div id="vis" style="width: 100%;"></div>
 
                 <script>
                     // Assign the specification to a local variable vlSpec.
-                    var vlSpec = {
+                    let vlSpec = {
                         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                         "width": "container",
                         "height": 400,
@@ -97,13 +96,13 @@
         </div>
 
         <div class="space-y-10">
-            <h1 class="text-left ml-20 text-blue-500 text-3xl">Aeropuertos en Argentina</h1>
+            <h1 class="text-left ml-20 text-blue-500 text-3xl">Vuelos de Travesía</h1>
             <div class="flex justify-center max-w-6xl mx-auto">
                 <div id="aeropuertos_arg"></div>
 
                 <script>
                     // Assign the specification to a local variable vlSpec.
-                    var vlSpec = {
+                    let aeropuertosSpec = {
                         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                         "width": 800,
                         "height": 2000,
@@ -124,12 +123,14 @@
                                     "fill": "lightgray",
                                     "stroke": "white"
                                 }
-                            }
-                            ,
+                            },
                             {
                                 "data": {
                                     "url": "data/aeropuertos_short.csv"
                                 },
+                                'transform': [
+                                    {"filter": "datum.local !== 'MBI'"}
+                                ],
                                 "projection": {
                                     "type": "mercator"
                                 },
@@ -149,11 +150,66 @@
                                         {"field": "denominacion", "type": "nominal", "title": "Nombre"}
                                     ]
                                 }
+                            },
+                            {
+                                "data": { "url": "data/horas_de_vuelo.csv" },
+                                "transform": [
+                                    { "filter": "datum.desde !== datum.hasta" },
+                                    {
+                                        "lookup": "desde",
+                                        "from": {
+                                            "data": {
+                                                "url": "data/aeropuertos_short.csv"
+                                            },
+                                            "key": "local",
+                                            "fields": [ "latitud", "longitud" ]
+                                        },
+                                        "as": ["latitud_desde", "longitud_desde"]
+                                    },
+                                    {
+                                        "lookup": "hasta",
+                                        "from": {
+                                            "data": { "url": "data/aeropuertos_short.csv" },
+                                            "key": "local",
+                                            "fields": ["latitud", "longitud"]
+                                        },
+                                        "as": ["latitud_hasta", "longitud_hasta"]
+                                    }
+                                ],
+                                "projection": {
+                                    "type": "mercator"
+                                },
+                                "mark": {
+                                    "type": "rule",
+                                    "strokeWidth": 3
+                                },
+                                "encoding": {
+                                    "longitude": {
+                                        "field": "longitud_desde",
+                                        "type": "quantitative"
+                                    },
+                                    "latitude": {
+                                        "field": "latitud_desde",
+                                        "type": "quantitative"
+                                    },
+                                    "longitude2": {"field": "longitud_hasta"},
+                                    "latitude2": {"field": "latitud_hasta"},
+                                    "color": {
+                                        "field": "matricula",
+                                        "type": "nominal"
+                                    },
+                                    "tooltip": [
+                                        {"field": "desde", "type": "nominal", "title": "Desde"},
+                                        {"field": "hasta", "type": "nominal", "title": "Hasta"},
+                                        {"field": "travesia_piloto", "type": "quantitative", "title": "Tiempo de vuelo"},
+                                        {"field": "fecha", "type": "temporal", "title": "Fecha"},
+                                    ]
+                                }
                             }
                         ]
                     };
                     // Embed the visualization in the container with id `vis`
-                    vegaEmbed('#aeropuertos_arg', vlSpec);
+                    vegaEmbed('#aeropuertos_arg', aeropuertosSpec);
                 </script>
             </div>
             <div class="text-sm max-w-3xl mx-auto rounded-2xl overflow-hidden border border-gray-300">
