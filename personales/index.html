@@ -24,6 +24,30 @@
     </header>
     <main class="w-full bg-white py-10 space-y-20">
         <div
+            x-data="{
+                airplanes: [
+                    { matricula: 'LV-CYB', img: 'images/lvcyb.jpg'},
+                    { matricula: 'LV-RLT', img: 'images/lvrlt.webp'},
+                    { matricula: 'LV-GKQ', img: 'images/lvgkq.jpg'},
+                    { matricula: 'LV-S023', img: 'images/lv-s023.webp'},
+                    { matricula: 'LV-S050', img: 'images/lv-s050.jpeg'},
+                    { matricula: 'LV-HQW', img: 'images/lvhqw.jpg'},
+                ]
+            }"
+            class="grid grid-cols-3 gap-6 px-6"
+        >
+            <template x-for="plane in airplanes" :key="plane.matricula">
+                <div>
+                    <div>
+                        <img :src="plane.img" alt="">
+                    </div>
+                    <p x-text="plane.matricula" class="text-center text-blue-500 font-bold py-2"></p>
+                </div>
+            </template>
+
+        </div>
+
+        <div
             class="space-y-10"
             x-data="horasPilotoChart()"
         >
